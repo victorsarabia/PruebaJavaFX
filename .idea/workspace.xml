@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="25ca6b3a-a3de-42e6-903e-bf6f46a32eb4" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nWlxRO4keSkrdugOPHLRf5Jz1u" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/victorsarabia/IdeaProjects/PruebaFX/src/main/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/org/example/pruebafx/fxml" />
+      <recent name="$PROJECT_DIR$/src/main/resources/org/example/pruebafx/images" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.pruebafx.HelloApplication" />
+      <module name="PruebaFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.pruebafx.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_392-corretto-1.8.0_392-3183f394aec4-22f8fbaa" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-a81d5c7c" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="25ca6b3a-a3de-42e6-903e-bf6f46a32eb4" name="Changes" comment="" />
+      <created>1729096958780</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729096958780</updated>
+      <workItem from="1729096960105" duration="740000" />
+      <workItem from="1730724814716" duration="25000" />
+      <workItem from="1733424972345" duration="178000" />
+      <workItem from="1734448726045" duration="1572000" />
+      <workItem from="1734546750014" duration="901000" />
+      <workItem from="1736271672662" duration="763000" />
+      <workItem from="1737137986353" duration="791000" />
+      <workItem from="1737139825972" duration="234000" />
+      <workItem from="1737140266350" duration="611000" />
+      <workItem from="1737471449267" duration="264000" />
+      <workItem from="1737472194322" duration="1983000" />
+      <workItem from="1737741437697" duration="145000" />
+      <workItem from="1737743058242" duration="352000" />
+      <workItem from="1737743413098" duration="327000" />
+      <workItem from="1737744090092" duration="1512000" />
+      <workItem from="1738004456355" duration="558000" />
+      <workItem from="1738005034349" duration="1741000" />
+      <workItem from="1738085959710" duration="3418000" />
+      <workItem from="1738247044778" duration="2247000" />
+      <workItem from="1738249305510" duration="3714000" />
+      <workItem from="1738257175330" duration="1820000" />
+      <workItem from="1738607880070" duration="2262000" />
+      <workItem from="1738690036351" duration="4849000" />
+      <workItem from="1738771504991" duration="3352000" />
+      <workItem from="1738777672733" duration="5504000" />
+      <workItem from="1738855430908" duration="1843000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
