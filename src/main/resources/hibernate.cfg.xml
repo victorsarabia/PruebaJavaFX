@@ -11,7 +11,8 @@
         <property name="hibernate.show_sql">true</property>
 
         <!--<mapping resource="ejemplo01/Profesor.hbm.xml"/>-->
-        <mapping class="org.example.pruebafx.model.Medicos"/>
+        <mapping class="org.example.pruebafx.model.Medico"/>
+        <mapping class="org.example.pruebafx.model.Especialidad"/>
 
     </session-factory>
 </hibernate-configuration>

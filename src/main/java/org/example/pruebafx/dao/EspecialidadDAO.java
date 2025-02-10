@@ -1,19 +1,24 @@
 package org.example.pruebafx.dao;
 
+import org.example.pruebafx.model.Especialidad;
 import org.example.pruebafx.util.HibernateUtil;
-import org.example.pruebafx.model.Medico;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class MedicoDAO {
+public class EspecialidadDAO {
+    public Especialidad getEspecialidadById(int id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Especialidad.class, id);
+        }
+    }
 
-    public void save(Medico medico) {
+    public void save(Especialidad especialidad) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.persist(medico);
+            session.persist(especialidad);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -23,16 +28,16 @@ public class MedicoDAO {
         }
     }
 
-    public List<Medico> getAll() {
+    public List<Especialidad> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Medico", Medico.class).list();
+            return session.createQuery("FROM Especialidad", Especialidad.class).list();
         }
     }
 
-    public List<Medico> getPaginated(int page, int offset) {
+    public List<Especialidad> getPaginated(int page, int offset) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             //return session.createQuery("select new Medico(m.id, m.nombre, m.apellido1) from Medico m", Medico.class)
-            return session.createQuery("FROM Medico", Medico.class)
+            return session.createQuery("FROM Especialidad ", Especialidad.class)
                     .setFirstResult((page - 1) * offset) // Va a la página page
                     .setMaxResults(offset) // Devuelve offset registros
                     .list();

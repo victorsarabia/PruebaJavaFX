@@ -1,7 +1,7 @@
 package org.example.pruebafx.service;
 
 import org.example.pruebafx.dao.MedicoDAO;
-import org.example.pruebafx.model.Medicos;
+import org.example.pruebafx.model.Medico;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class MedicoService {
 
     private final MedicoDAO medicoDAO = new MedicoDAO();
 
-    public void save(Medicos medico) {
+    public void save(Medico medico) {
         // Validación antes de guardar
         if (medico.getId() == null || medico.getId() == 0) {
             throw new IllegalArgumentException("El ID no puede estar vacío.");
@@ -18,11 +18,11 @@ public class MedicoService {
         medicoDAO.save(medico);
     }
 
-    public List<Medicos> getAll() {
+    public List<Medico> getAll() {
         return medicoDAO.getAll();
     }
 
-    public List<Medicos> getPaginated() {
-        return medicoDAO.getPaginated();
+    public List<Medico> getPaginated() {
+        return medicoDAO.getPaginated(1, 50);
     }
 }

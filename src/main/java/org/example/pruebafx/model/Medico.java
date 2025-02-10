@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "medicos")
-public class Medicos {
+public class Medico {
 
     @Id
     private Long id;
@@ -13,14 +13,25 @@ public class Medicos {
     @Column(nullable = false)
     private String apellido1;
 
+    @ManyToOne
+    @JoinColumn(name="especialidad_id")
+    private Especialidad especialidad;
 
-    public Medicos(Long id, String nombre, String apellido1) {
+
+    public Medico(Long id, String nombre, String apellido1, Especialidad especialidad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.especialidad = especialidad;
+    }
+
+    public Medico(Long id, String nombre, String apellido1) {
         this.id = id;
         this.nombre = nombre;
         this.apellido1 = apellido1;
     }
 
-    public Medicos() {
+    public Medico() {
     }
 
     public void setId(Long id) {
@@ -43,6 +54,7 @@ public class Medicos {
                 " id='"+ id + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido1 + '\'' +
+                (especialidad!=null? ", especialidad='"+ especialidad.toString() + '\'' : "") +
                 '}';
     }
 }
