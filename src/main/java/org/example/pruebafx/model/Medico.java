@@ -48,6 +48,9 @@ public class Medico {
     public String getApellido1() { return apellido1; }
     public void setApellido1(String apellido1) { this.apellido1 = apellido1; }
 
+    public Especialidad getEspecialidad() { return especialidad; }
+    public void setEspecialidad(Especialidad especialidad) { this.especialidad = especialidad; }
+
     @Override
     public String toString() {
         return "Medico{" +

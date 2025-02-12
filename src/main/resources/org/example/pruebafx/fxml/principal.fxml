@@ -2,9 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pruebafx.controller.PrincipalController">
@@ -24,10 +28,24 @@
       </ButtonBar>
    </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="135.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtNombre" />
-            <TextField fx:id="txtApellidos" />
+            <HBox prefHeight="42.0" prefWidth="600.0">
+               <children>
+                  <TextField />
+                  <TextField prefHeight="26.0" prefWidth="177.0" />
+                  <ComboBox prefWidth="150.0" />
+                  <Button mnemonicParsing="false" text="Find" />
+               </children>
+            </HBox>
+            <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="tabla_id" editable="false" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="tabla_nombre" editable="false" prefWidth="75.0" text="Nombre" />
+                <TableColumn fx:id="tabla_apellido1" prefWidth="75.0" text="Apellido1" />
+                <TableColumn fx:id="tabla_especialidad" editable="false" prefWidth="75.0" text="Especialidad" />
+              </columns>
+            </TableView>
          </children>
       </VBox>
    </center>
