@@ -32,10 +32,10 @@
          <children>
             <HBox prefHeight="42.0" prefWidth="600.0">
                <children>
-                  <TextField />
-                  <TextField prefHeight="26.0" prefWidth="177.0" />
-                  <ComboBox prefWidth="150.0" />
-                  <Button mnemonicParsing="false" text="Find" />
+                  <TextField fx:id="txtNombre" promptText="Nombre" />
+                  <TextField fx:id="txtApellido1" prefHeight="26.0" prefWidth="177.0" promptText="Apellido" />
+                  <ComboBox fx:id="cboEspecialidad" prefWidth="150.0" promptText="Especialidad" />
+                  <Button fx:id="find" mnemonicParsing="false" onAction="#findBuscador" text="Find" />
                </children>
             </HBox>
             <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0">
@@ -46,6 +46,13 @@
                 <TableColumn fx:id="tabla_especialidad" editable="false" prefWidth="75.0" text="Especialidad" />
               </columns>
             </TableView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="anterior" mnemonicParsing="false" onAction="#anteriorPagina" text="&lt;" />
+                  <TextField fx:id="pagina" editable="false" text="1" />
+                  <Button fx:id="siguiente" mnemonicParsing="false" onAction="#siguientePagina" text="&gt;" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

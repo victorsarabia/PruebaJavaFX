@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ import org.example.pruebafx.model.Medico;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -25,9 +27,11 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private TextField txtNombre;
-
     @FXML
-    private TextField txtApellidos;
+    private TextField txtApellido1;
+    @FXML
+    private ComboBox cboEspecialidad;
+
     @FXML
     private TableView tabla;
     @FXML
@@ -40,33 +44,15 @@ public class PrincipalController implements Initializable {
     private TableColumn tabla_especialidad;
 
     @FXML
+    private TextField pagina;
+    private HashMap<String, String> filtros = new HashMap<>();
+
+
+    @FXML
     protected void mostrarMedicos() throws IOException {
-        /*System.out.println("Inicio");
-        try {
-
-            Class.forName("org.mariadb.jdbc.Driver");
-            Connection connection = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/universidad?user=root&password=");
-
-            if (connection != null) {
-                System.out.println("Conexión a base de datos " + " OK");
-
-                Statement st = connection.createStatement();
-                ResultSet rs = st.executeQuery("select * from alumno");
-                while (rs.next()) {
-                    System.out.println(rs.getString("dni") + " " + rs.getString(2) + " " + rs.getString(3));
-                }
-
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println("Fin");
-        */
-
-        System.out.println(txtNombre.getText());
 
         MedicoService medicoService = new MedicoService();
-        List<Medico> medicos = medicoService.getPaginated();
+        List<Medico> medicos = medicoService.getPaginated(1, 50, null);
         for(Medico medico : medicos)
         {
             //imprimimos el objeto pivote
@@ -91,18 +77,18 @@ public class PrincipalController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        MedicoService medicoService = new MedicoService();
-
+    public void rellenaTabla(List<Medico> medicos){
         try {
-            List<Medico> medicos = medicoService.getPaginated();
             tabla.setItems(FXCollections.observableArrayList(medicos));
 
             tabla_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             tabla_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             tabla_apellido1.setCellValueFactory(new PropertyValueFactory<Medico, String>("apellido1"));
+
+            // Opción más sencilla para mostrar el valor de un atributo de tipo objeto
+            //tabla_especialidad.setCellValueFactory(data-> new SimpleStringProperty(data.getValue()));
+
+            // Similar a la anterior pero más detallada
             /*tabla_especialidad.setCellValueFactory(cellData -> {
                 // Obtener el objeto Medico
                 Medico medico = (Medico) cellData.getValue();
@@ -112,8 +98,9 @@ public class PrincipalController implements Initializable {
                         medico != null && medico.getEspecialidad() != null ? medico.getEspecialidad().getNombre() : ""
                 );
             });
-
              */
+
+            // Opción por si no va el getValue() del Object
             tabla_especialidad.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Medico, String>, ObservableValue<String>>() {
                 @Override
                 public ObservableValue<String> call(TableColumn.CellDataFeatures<Medico, String> cellData) {
@@ -124,13 +111,65 @@ public class PrincipalController implements Initializable {
                 }
             });
 
-
-
-            //tabla_especialidad.setCellValueFactory(data-> new SimpleStringProperty(data.getValue()));
-
         } catch (Exception e) {
             // TODO Mettre une popup erreur base de données
             e.printStackTrace();
+        }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Rellenar el combo de Especialidades
+        EspecialidadService especialidadService = new EspecialidadService();
+        List<Especialidad> especialidades = especialidadService.getAll();
+        for (Especialidad especialidad: especialidades){
+            cboEspecialidad.getItems().add(especialidad.getNombre());
+        }
+
+        // Rellena la tabla con la primera página sin filtros
+        MedicoService medicoService = new MedicoService();
+        List<Medico> medicos = medicoService.getPaginated(1, 50, null);
+        rellenaTabla(medicos);
+    }
+
+    @FXML
+    public void findBuscador(){
+        // Construcción de un HashMap con los filtros
+        if (!txtNombre.getText().isEmpty())
+            filtros.put("nombre", txtNombre.getText());
+        if (!txtApellido1.getText().isEmpty())
+            filtros.put("apellidos", txtApellido1.getText());
+        if (cboEspecialidad.getValue() != null)
+            filtros.put("especialidad", (String) cboEspecialidad.getValue());
+
+        MedicoService medicoService = new MedicoService();
+        List<Medico> medicos = medicoService.getPaginated(1, 50, filtros);
+        rellenaTabla(medicos);
+    }
+
+    @FXML
+    public void siguientePagina(){
+        int page = Integer.parseInt(pagina.getText());
+        page++;
+
+        MedicoService medicoService = new MedicoService();
+        List<Medico> medicos = medicoService.getPaginated(page, 50, filtros);
+        rellenaTabla(medicos);
+
+        pagina.setText(page+"");
+    }
+
+    @FXML
+    public void anteriorPagina(){
+        int page = Integer.parseInt(pagina.getText());
+        if (page>1) {
+            page--;
+
+            MedicoService medicoService = new MedicoService();
+            List<Medico> medicos = medicoService.getPaginated(page, 50, filtros);
+            rellenaTabla(medicos);
+
+            pagina.setText(page + "");
         }
     }
 }

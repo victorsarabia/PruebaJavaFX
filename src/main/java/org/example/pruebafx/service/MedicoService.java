@@ -3,6 +3,7 @@ package org.example.pruebafx.service;
 import org.example.pruebafx.dao.MedicoDAO;
 import org.example.pruebafx.model.Medico;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MedicoService {
@@ -22,7 +23,7 @@ public class MedicoService {
         return medicoDAO.getAll();
     }
 
-    public List<Medico> getPaginated() {
-        return medicoDAO.getPaginated(1, 50);
+    public List<Medico> getPaginated(int page, int offset, HashMap<String, String> filtros) {
+        return medicoDAO.getPaginated(page, offset, filtros);
     }
 }
