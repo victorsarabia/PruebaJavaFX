@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pruebafx/controller/PrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pruebafx/controller/PrincipalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pruebafx/dao/MedicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pruebafx/dao/MedicoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pruebafx/service/MedicoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pruebafx/service/MedicoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/pruebafx/fxml/principal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/pruebafx/fxml/principal.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +22,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -47,6 +49,7 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/victorsarabia/IdeaProjects/PruebaFX/src/main/lib",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,7 +138,8 @@
       <workItem from="1739204006491" duration="3744000" />
       <workItem from="1739298975998" duration="2386000" />
       <workItem from="1739380337407" duration="7530000" />
-      <workItem from="1739456940860" duration="11086000" />
+      <workItem from="1739456940860" duration="11210000" />
+      <workItem from="1739545649466" duration="7589000" />
     </task>
     <servers />
   </component>

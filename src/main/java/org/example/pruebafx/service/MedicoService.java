@@ -26,4 +26,8 @@ public class MedicoService {
     public List<Medico> getPaginated(int page, int offset, HashMap<String, String> filtros) {
         return medicoDAO.getPaginated(page, offset, filtros);
     }
+
+    public long cout(HashMap<String, String> filtros) {
+        return medicoDAO.cout(filtros);
+    }
 }

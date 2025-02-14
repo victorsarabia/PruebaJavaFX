@@ -5,10 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.print.Printer;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import org.example.pruebafx.model.Especialidad;
@@ -44,8 +42,17 @@ public class PrincipalController implements Initializable {
     private TableColumn tabla_especialidad;
 
     @FXML
-    private TextField pagina;
+    private Button btnAnterior;
+    @FXML
+    private Button btnSiguiente;
+    @FXML
+    private TextField txtPagina;
+    @FXML
+    private Label lblTotal;
+    private static final int OFFSET=20;
+
     private HashMap<String, String> filtros = new HashMap<>();
+    private long totalMedicos;
 
 
     @FXML
@@ -128,12 +135,16 @@ public class PrincipalController implements Initializable {
 
         // Rellena la tabla con la primera página sin filtros
         MedicoService medicoService = new MedicoService();
-        List<Medico> medicos = medicoService.getPaginated(1, 50, null);
+        List<Medico> medicos = medicoService.getPaginated(1, OFFSET, null);
         rellenaTabla(medicos);
+        totalMedicos = medicoService.cout(null);
+        lblTotal.setText("Total registros: "+totalMedicos+" - Total páginas: "+Math.round(Math.ceil((float)totalMedicos/(float)OFFSET)));
     }
 
     @FXML
     public void findBuscador(){
+        filtros.clear();
+
         // Construcción de un HashMap con los filtros
         if (!txtNombre.getText().isEmpty())
             filtros.put("nombre", txtNombre.getText());
@@ -142,34 +153,52 @@ public class PrincipalController implements Initializable {
         if (cboEspecialidad.getValue() != null)
             filtros.put("especialidad", (String) cboEspecialidad.getValue());
 
+
         MedicoService medicoService = new MedicoService();
-        List<Medico> medicos = medicoService.getPaginated(1, 50, filtros);
+        totalMedicos = medicoService.cout(filtros);
+        List<Medico> medicos = medicoService.getPaginated(1, OFFSET, filtros);
         rellenaTabla(medicos);
+
+        txtPagina.setText("1");
+        btnSiguiente.setDisable(false);
+        lblTotal.setText("Total registros: "+totalMedicos+" - Total páginas: "+Math.round(Math.ceil((float)totalMedicos/(float)OFFSET)));
+
     }
 
     @FXML
     public void siguientePagina(){
-        int page = Integer.parseInt(pagina.getText());
+        int page = Integer.parseInt(txtPagina.getText());
         page++;
 
         MedicoService medicoService = new MedicoService();
-        List<Medico> medicos = medicoService.getPaginated(page, 50, filtros);
-        rellenaTabla(medicos);
+        List<Medico> medicos = medicoService.getPaginated(page, OFFSET, filtros);
+        if (!medicos.isEmpty()) {
+            rellenaTabla(medicos);
 
-        pagina.setText(page+"");
+            txtPagina.setText(page + "");
+            btnAnterior.setDisable(false);
+        } else {
+            btnSiguiente.setDisable(true);
+        }
     }
 
     @FXML
     public void anteriorPagina(){
-        int page = Integer.parseInt(pagina.getText());
-        if (page>1) {
-            page--;
+        int page = Integer.parseInt(txtPagina.getText());
+        page--;
 
+        if (page>0) {
             MedicoService medicoService = new MedicoService();
-            List<Medico> medicos = medicoService.getPaginated(page, 50, filtros);
-            rellenaTabla(medicos);
-
-            pagina.setText(page + "");
+            List<Medico> medicos = medicoService.getPaginated(page, OFFSET, filtros);
+            if (!medicos.isEmpty()) {
+                rellenaTabla(medicos);
+                txtPagina.setText(page + "");
+                btnSiguiente.setDisable(false);
+            } else {
+                btnAnterior.setDisable(true);
+            }
+        } else {
+            btnAnterior.setDisable(true);
         }
     }
 }

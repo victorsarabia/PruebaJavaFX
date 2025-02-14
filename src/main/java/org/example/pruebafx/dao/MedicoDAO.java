@@ -71,4 +71,36 @@ public class MedicoDAO {
             return query.list();
         }
     }
+
+    public long cout(HashMap<String, String> filtros) {
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            return session.createQuery("SELECT COUNT(m) FROM Medico m", Long.class)
+//                    .getSingleResult();
+//        }
+
+        // Separando para añadir de forma dinámica los filtros
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            StringBuilder hql = new StringBuilder("SELECT COUNT(m) FROM Medico m WHERE true");
+
+            // Agregar condiciones dinámicas basadas en el HashMap
+            if (filtros != null)
+                for (String key : filtros.keySet()) {
+                    if (key.equals("especialidad"))
+                        hql.append(" AND m.especialidad.nombre LIKE :").append(key);// in (select nombre from Especialidad e where e.nombre LIKE :especialidad)");
+                    else
+                        hql.append(" AND m.").append(key).append(" LIKE :").append(key);
+                }
+
+            Query<Long> query = session.createQuery(hql.toString(), Long.class);
+
+            // Asignar valores a los parámetros de la consulta
+            if (filtros != null)
+                for (HashMap.Entry<String, String> filtro : filtros.entrySet()) {
+                    query.setParameter(filtro.getKey(),"%"+filtro.getValue()+"%");
+                }
+
+            return query.getSingleResult();
+        }
+    }
+
 }
